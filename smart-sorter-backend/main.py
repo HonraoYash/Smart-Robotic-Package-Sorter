@@ -1,9 +1,11 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from rekognition_helper import detect_labels_and_text
+from llm_classifier import classify_semantically
 from fastapi import Form
 from typing import Optional
-from vision import detect_objects, extract_text_labels
+# from vision import detect_objects, extract_text_labels
 import shutil
 import uuid
 import os
@@ -19,62 +21,43 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve annotated images
+# Serve annotated or raw uploaded images
+os.makedirs("static/annotated_images", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def root():
     return {"message": "Backend is live!"}
 
-
 @app.post("/classify")
-async def classify_image(
-    file: Optional[UploadFile] = File(None),
-    package_id: Optional[str] = Form(None)
-):
-    # CASE 1: User selected from rack (simulation)
-    if package_id:
-        package_file = f"packages/{package_id}.jpg"
-        if not os.path.exists(package_file):
-            return {"error": "Invalid package_id"}
+async def classify_image(file: UploadFile = File(...)):
+    image_bytes = await file.read()
 
-        detections, annotated_file = detect_objects(package_file)
-        ocr_label = extract_text_labels(package_file)
-        label, confidence = classify_from_results(detections, ocr_label)
-    # CASE 2: User uploaded a new image
-    elif file:
-        filename = f"temp_{uuid.uuid4()}.jpg"
-        with open(filename, "wb") as f:
-            shutil.copyfileobj(file.file, f)
+    # Save uploaded image
+    filename = f"annotated_{uuid.uuid4()}.jpg"
+    save_path = os.path.join("static", "annotated_images", filename)
+    with open(save_path, "wb") as f:
+        f.write(image_bytes)
 
-        detections, annotated_file = detect_objects(filename)
-        ocr_label = extract_text_labels(filename)
-        label, confidence = classify_from_results(detections, ocr_label)
-        os.remove(filename)
+    # Run Rekognition
+    detection_result, confidence = detect_labels_and_text(image_bytes)
+
+    # Case 1: OCR gave us an exact match
+    if isinstance(detection_result, str):
+        label = detection_result
+        confidence = confidence or 1.0
+    # Case 2: Use semantic LLM classification
     else:
-        return {"error": "No file or package_id provided"}
+        label = classify_semantically(detection_result)
+        confidence = 0.9
 
-    # Decide bin
-    bin_mapping = {
-        "fragile": 1,
-        "urgent": 2,
-        "heavy": 3
-    }
+    # Map to bins
+    bin_mapping = {"fragile": 1, "urgent": 2, "heavy": 3}
     bin_id = bin_mapping.get(label, 0)
-
-    annotated_url = f"http://localhost:8000/static/annotated_images/{annotated_file}"
 
     return {
         "label": label,
         "confidence": confidence,
         "bin_id": bin_id,
-        "annotated_image_url": annotated_url
+        "annotated_image_url": f"http://localhost:8000/static/annotated_images/{filename}"
     }
-
-def classify_from_results(detections, ocr_label):
-    if ocr_label:
-        return ocr_label, 1.0
-    elif detections:
-        return detections[0]["label"], detections[0]["confidence"]
-    else:
-        return "unknown", 0.0
