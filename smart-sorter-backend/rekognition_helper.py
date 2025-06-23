@@ -1,6 +1,11 @@
 import boto3
+import os
 
-rekognition = boto3.client("rekognition")
+rekognition = boto3.client(
+    "rekognition",
+    region_name=os.getenv("AWS_REGION", "us-east-1")
+)
+
 
 def detect_labels_and_text(image_bytes):
     label_response = rekognition.detect_labels(
