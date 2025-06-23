@@ -1,0 +1,43 @@
+# Python specific
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyd
+*.pyo
+*.so
+.Python
+venv/
+*.egg-info/
+*.egg
+
+# Development files
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Large files
+AWSCLIV2.pkg  # This looks like a large macOS installer
+yolov8n.pt    # Unless you specifically need this in production
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+
+# Documentation
+README.md
+OUTLINE
+TIMELINE
+
+# Frontend files (if building backend only)
+smart-sorter-frontend/
