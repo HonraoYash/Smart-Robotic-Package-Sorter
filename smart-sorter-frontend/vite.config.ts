@@ -6,6 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
+    base: '/Smart-Robotic-Package-Sorter/smart-sorter-frontend/', 
     host: "::",
     port: 8080,
   },
