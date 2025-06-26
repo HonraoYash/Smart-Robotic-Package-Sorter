@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "serve dist",
+    "start": "npm run build && serve -s dist -l $PORT",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist --nojekyll"
   },

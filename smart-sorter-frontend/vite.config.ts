@@ -5,10 +5,14 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/Smart-Robotic-Package-Sorter/',
+  base: '/',
   server: {
-    host: "::",
-    port: 8080,
+    host: "0.0.0.0",
+    port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
+  },
+  preview: {
+    host: "0.0.0.0",
+    port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
   },
   plugins: [
     react(),
