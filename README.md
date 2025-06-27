@@ -21,11 +21,11 @@ An intelligent, animated system for sorting packages using AI and a simulated co
 
 ## 🖼️ Screenshots
 
-| Simulation |
+| Simulation Mode |
 |------------|
 | ![](./smart-sorter-frontend/assets/simulation.jpeg) |
 
-| Upload |
+| Upload Mode |
 |------------|
 | ![](./smart-sorter-frontend/assets/upload.jpeg) |
 
