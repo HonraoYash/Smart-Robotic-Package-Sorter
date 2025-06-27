@@ -1,73 +1,111 @@
-# Welcome to your Lovable project
+# 📦 Smart Package Sorting System
 
-## Project info
+An intelligent, animated system for sorting packages using AI and a simulated conveyor belt with a robotic arm. Built with **FastAPI**, **AWS Rekognition**, **LLM classification**, and a beautiful **React + Tailwind** frontend.
 
-**URL**: https://lovable.dev/projects/ae87e4ad-a11e-4645-834c-d38943cd3d4b
+## 🌐 Live Demo
+- **Interact with my robot**: [Live app](https://smart-robotic-package-sorter.up.railway.app/)  
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+✅ Upload package images or simulate them  
+✅ Smart label detection using AWS Rekognition  
+✅ LLM-based fallback for semantic classification  
+✅ Real-time robotic arm animation with bin sorting  
+✅ Confidence scores and labeled package previews  
+✅ Seamless integration with FastAPI backend  
+✅ Fully deployed on **Railway** 
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ae87e4ad-a11e-4645-834c-d38943cd3d4b) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🧠 System Architecture
 
-**Use your preferred IDE**
+  User
+       │
+    [Frontend: React + Vite]
+       │
+Upload / Simulate Packages
+│
+[FastAPI Backend]
+│
+┌──────────────┬───────────────┐
+│ Rekognition │ LLM Fallback │
+└──────────────┴───────────────┘
+│
+Classify + Annotate
+│
+Return Label + Bin + URL
+│
+Animate Sorting Mechanism
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🖼️ Screenshots
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+| Upload Mode | Scanning | Sorted |
+|-------------|----------|--------|
+| 📤 📦        | 🔍 🤖     | ✅ 🧠    |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🧰 Tech Stack
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Frontend
+- ⚛️ React (Vite)
+- 🎨 Tailwind CSS
+- 🎞️ Framer Motion (optional for animations)
+
+### Backend
+- ⚡ FastAPI
+- 🧠 AWS Rekognition
+- 🧠 OpenAI or custom LLM classification
+- 🐘 Railway (deployment)
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/HonraoYash/Smart-Package-Sorter.git
+cd Smart-Package-Sorter
+
+
+### 2. Backend Setup (FastAPI)
+cd smart-sorter-backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Run the server
+uvicorn main:app --reload
+Make sure you set your AWS credentials and region using environment variables or AWS CLI.
+
+### 3. Frontend Setup (Vite + React)
+cd smart-sorter-frontend
+npm install
+
+# Create `.env` file
+echo "VITE_BACKEND_URL=https://your-backend-url.railway.app" > .env
+
+# Run frontend
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+### 4. Deployment
+Deployed using Railway:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Backend: Dockerized with exposed /static route
 
-**Use GitHub Codespaces**
+Frontend: Uses Vite build + public API URL from .env.production
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+⭐️ Show Your Support
+If you liked this project:
 
-## What technologies are used for this project?
+🌟 Star the repo
 
-This project is built with:
+🍴 Fork it
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/ae87e4ad-a11e-4645-834c-d38943cd3d4b) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+🧠 Try improving the robotic arm logic!
