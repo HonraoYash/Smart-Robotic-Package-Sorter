@@ -62,7 +62,7 @@ Animate Sorting Mechanism
 
 | Simulation | Upload | 
 |------------|--------|
-| ![](./assets/simulation.jpeg) | ![](./assets/upload.jpeg) |
+| ![](.smart-sorter-frontend/assets/simulation.jpeg) | ![](./assets/upload.jpeg) |
 
 ---
 
