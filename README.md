@@ -21,13 +21,13 @@ An intelligent, animated system for sorting packages using AI and a simulated co
 
 ## 🧠 System Architecture
 
-  User
+User
   
-       │
+│
        
-    [Frontend: React + Vite]
+Frontend: React + Vite
     
-       │
+│
        
 Upload / Simulate Packages
 
@@ -39,7 +39,7 @@ Upload / Simulate Packages
 
 ┌──────────────┬───────────────┐
 
-│ Rekognition │ LLM Fallback │
+│      Rekognition     │    LLM Fallback   │
 
 └──────────────┴───────────────┘
 
