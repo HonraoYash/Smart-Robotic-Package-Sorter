@@ -19,6 +19,14 @@ An intelligent, animated system for sorting packages using AI and a simulated co
 
 ---
 
+## 🖼️ Screenshots
+
+| Simulation | Upload | 
+|------------|--------|
+| ![](./smart-sorter-frontend/assets/simulation.jpeg) | ![](.smart-sorter-frontend/assets/upload.jpeg) |
+
+---
+
 ## 🧠 System Architecture
 
 User
@@ -55,14 +63,6 @@ Return Label + Bin + URL
 
 Animate Sorting Mechanism
 
-
----
-
-## 🖼️ Screenshots
-
-| Simulation | Upload | 
-|------------|--------|
-| ![](./smart-sorter-frontend/assets/simulation.jpeg) | ![](./assets/upload.jpeg) |
 
 ---
 
