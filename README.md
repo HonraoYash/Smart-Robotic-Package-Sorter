@@ -60,9 +60,9 @@ Animate Sorting Mechanism
 
 ## 🖼️ Screenshots
 
-| Upload Mode | Scanning | Sorted |
-|-------------|----------|--------|
-| 📤 📦        | 🔍 🤖     | ✅ 🧠    |
+| Simulation | Upload | 
+|------------|--------|
+| ![](./assets/simulation.jpeg) | ![](./assets/upload.jpeg) |
 
 ---
 
